@@ -1,0 +1,81 @@
+//5a.AVLTree implementation using collection API
+import java.util.*;
+public class AVLTree<T extends Comparable<T>>{
+ private TreeSet<T> treeset;
+ public AVLTree(){
+ treeset=new TreeSet<>();
+ }
+ public void insert(T data){
+ treeset.add(data);
+ }
+ public void delete(T data){
+ treeset.remove(data); 
+ }
+ public boolean search(T data){
+ return treeset.contains(data);
+ }
+ public void inorder(){
+ for(T data:treeset)
+ System.out.print(data+" ");
+ System.out.println();
+ }
+ public static void main(String[] args){
+ AVLTree<Integer> t=new AVLTree<>();
+ t.insert(5);
+ t.insert(9);
+ t.insert(3);
+ t.insert(4);
+ t.insert(8);
+ t.insert(1);
+ System.out.println("Inorder traversal");
+ t.inorder();
+ System.out.println("search 3:"+t.search(3));
+ System.out.println("search 2:"+t.search(2));
+ t.delete(3);
+ System.out.println("Inorder traversal after deleting 3");
+ t.inorder();
+ }
+}
+
+
+5b//8.Hashmap Linkedhashmap Treemap
+import java.util.*;
+public class MyMap{
+ public static void main(String[] args){
+ HashMap<Integer,String> h=new HashMap<>();
+h.put(3,"a");
+h.put(0,"b");
+h.put(5,"c");
+h.put(2,"d");
+System.out.println("HashMap");
+System.out.println(h);
+System.out.println("Keyset:"+h.keySet());
+System.out.println("Values:"+h.values());
+System.out.println("Entryset:"+h.entrySet());
+h.remove(0);
+System.out.println("After removing 0:"+h);
+LinkedHashMap<Integer,String> h1=new LinkedHashMap<>();
+h1.put(3,"a");
+h1.put(0,"b");
+h1.put(5,"c");
+h1.put(2,"d");
+System.out.println();
+System.out.println("LinkedHashMap");
+System.out.println(h1);
+TreeMap<Integer,String> h2=new TreeMap<>();
+h2.put(3,"a");
+h2.put(0,"b");
+h2.put(5,"c");
+h2.put(2,"d");
+System.out.println();
+System.out.println("TreeMap");
+System.out.println(h2);
+System.out.println("DescendingkeySet:"+h2.descendingKeySet());
+System.out.println("DescendingMap:"+h2.descendingMap());
+System.out.println("First element:"+h2.firstKey());
+System.out.println("last element:"+h2.lastKey());
+System.out.println("HeadMap:"+h2.headMap(3));
+System.out.println("TailMap:"+h2.tailMap(2));
+System.out.println("SubMap:"+h2.subMap(2,5));
+ }
+}

@@ -1,0 +1,159 @@
+//2a.Stack using user defined arrays
+import java.util.*;
+class SA<T>{
+ private int top=-1;
+ private int size;
+ private T[] stack;
+ public SA(int size,T[] stack){
+ this.size=size;
+ this.stack=stack;
+ }
+ public void push(T item){
+ if(isFull())
+ System.out.println("Stack is full");
+ else
+ stack[++top]=item;
+ }
+ public void pop(){
+ if(isEmpty())
+ System.out.println("Stack is empty");
+ else{
+ System.out.println(stack[top]+" is popped");
+ top--;
+ }
+ }
+ public boolean isEmpty(){
+ return top==-1;
+ }
+ public boolean isFull(){
+ return top==size-1;
+ }
+ public void peek(){
+ if(isEmpty())
+ System.out.println("Stack is empty");
+ else 
+ System.out.println(stack[top]);
+ }
+ public void display() {
+ if(isEmpty())
+ System.out.println("Stack is empty");
+ else {
+ System.out.println("Stack is :");
+ for(int i=top;i>=0;i--){
+ System.out.println(stack[i]);
+ }
+ }
+ }
+}
+ 
+public class SAT{
+ public static void main(String[] args){
+ Scanner sc=new Scanner(System.in);
+System.out.println("Enter size of Stack :");
+int n=sc.nextInt();
+System.out.println("Enter datatype choice :\n1.Integer\n2.String");
+int n1=sc.nextInt();
+if(n1==1){
+ Integer[] arr=new Integer[n];
+ SA<Integer> s=new SA<>(n,arr);
+ System.out.println("MENU\n1.push\n2.pop\n3.display\n4.peek\nAny other number exit");
+ int ch;
+ do{
+ System.out.println("Enter the choice :");
+ ch=sc.nextInt();
+ switch(ch){
+ case 1:
+ System.out.println("Enter the element:");
+ int x=sc.nextInt();
+ s.push(x);
+ break;
+ case 2:
+ s.pop();
+ break;
+ case 3:
+ s.display();
+ break;
+ case 4:
+ s.peek();
+ break;
+ default:
+ System.out.println("EXIT");
+ System.exit(0);
+ }
+ }while(ch<=4);
+}
+if(n1==2){
+ String[] arr=new String[n];
+ SA<String> s=new SA<>(n,arr);
+ System.out.println("MENU\n1.push\n2.pop\n3.display\n4.peek\nAny other number exit");
+ int ch;
+ do{
+ System.out.println("Enter the choice :");
+ ch=sc.nextInt();
+ switch(ch){
+ case 1:
+ System.out.println("Enter the element:");
+ sc.nextLine();
+ String x=sc.nextLine();
+ s.push(x);
+ break;
+case 2:
+ s.pop();
+ break;
+ case 3:
+ s.display();
+ break;
+ case 4:
+ s.peek();
+ break;
+ default:
+ System.out.println("EXIT");
+ System.exit(0);
+ }
+ }while(ch<=4);
+ }
+ }
+}
+
+
+
+
+
+2b.
+import java.util.*;
+public class MySet{
+ public static void main(String[] args){
+ HashSet<Integer> h=new HashSet<>();
+ h.add(0);
+ h.add(2);
+ h.add(3);
+ h.add(5);
+ h.add(2);
+ System.out.println("HashSet");
+ System.out.println(h);
+ h.remove(0);
+ System.out.println("After removing 0:"+h);
+ LinkedHashSet<Integer> h1=new LinkedHashSet<>();
+ h1.add(0);
+ h1.add(2);
+ h1.add(3);
+ h1.add(5);
+ h1.add(2);
+ System.out.println();
+ System.out.println("LinkedHashSet");
+ System.out.println(h1);
+ TreeSet<Integer> h2=new TreeSet<>();
+ h2.add(0);
+ h2.add(2);
+ h2.add(3);
+ h2.add(5);
+ h2.add(2);
+ System.out.println();
+ System.out.println("TreeSet");
+ System.out.println(h2);
+ System.out.println("DescendingSet:"+h2.descendingSet());
+ System.out.println("First element:"+h2.first());
+ System.out.println("last element:"+h2.last());
+ }
+}
+

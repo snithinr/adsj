@@ -1,0 +1,122 @@
+//3a..BST collection API
+import java.util.*;
+public class BST<T extends Comparable<T>>{
+ private Node<T> root=null;
+ class Node<T>{
+ T data;
+Node<T> left;
+Node<T> right;
+Node(T data){
+ this.data=data;
+ left=null;
+ right=null;
+}
+ }
+ public void insert(T value){
+ root=insertRecursive(root,value);
+ }
+ private Node<T> insertRecursive(Node<T> current,T value){
+ if(current==null)
+ return new Node<>(value);
+ if(value.compareTo(current.data)<0)
+ current.left=insertRecursive(current.left,value);
+ else if(value.compareTo(current.data)>0)
+ current.right=insertRecursive(current.right,value);
+ return current;
+ }
+ public Collection<T> inOrder(){
+ Collection<T> result=new LinkedList<>();
+inOrderRec(root,result);
+return result;
+ }
+ public void inOrderRec(Node<T> current,Collection<T> result){
+ if(current!=null){
+ inOrderRec(current.left,result);
+ result.add(current.data);
+ inOrderRec(current.right,result);
+ }
+ }
+ public Collection<T> preOrder(){
+ Collection<T> result=new LinkedList<>();
+ preOrderRec(root,result);
+ return result;
+ }
+ public void preOrderRec(Node<T> current,Collection<T> result){
+ if(current!=null){
+ result.add(current.data);
+ preOrderRec(current.left,result);
+ preOrderRec(current.right,result);
+ }
+ }
+ public Collection<T> postOrder(){
+ Collection<T> result=new LinkedList<>();
+ postOrderRec(root,result);
+ return result;
+ }
+ public void postOrderRec(Node<T> current,Collection<T> result){
+ if(current!=null){
+ postOrderRec(current.left,result);
+ postOrderRec(current.right,result);
+ result.add(current.data);
+ }
+ }
+ 
+ public static void main(String[] args){
+ BST<Integer> bst=new BST<>();
+bst.insert(5);
+bst.insert(3);
+bst.insert(7);
+bst.insert(2);
+bst.insert(4);
+bst.insert(6);
+bst.insert(8);
+ System.out.println("IN ORDER TRAVERSAL :"+bst.inOrder());
+System.out.println("PRE ORDER TRAVERSAL :"+bst.preOrder());
+System.out.println("POST ORDER TRAVERSAL :"+bst.postOrder());
+ }
+}
+
+
+
+3b.
+
+import java.util.*;
+public class MyMap{
+ public static void main(String[] args){
+ HashMap<Integer,String> h=new HashMap<>();
+h.put(3,"a");
+h.put(0,"b");
+h.put(5,"c");
+h.put(2,"d");
+System.out.println("HashMap");
+System.out.println(h);
+System.out.println("Keyset:"+h.keySet());
+System.out.println("Values:"+h.values());
+System.out.println("Entryset:"+h.entrySet());
+h.remove(0);
+System.out.println("After removing 0:"+h);
+LinkedHashMap<Integer,String> h1=new LinkedHashMap<>();
+h1.put(3,"a");
+h1.put(0,"b");
+h1.put(5,"c");
+h1.put(2,"d");
+System.out.println();
+System.out.println("LinkedHashMap");
+System.out.println(h1);
+TreeMap<Integer,String> h2=new TreeMap<>();
+h2.put(3,"a");
+h2.put(0,"b");
+h2.put(5,"c");
+h2.put(2,"d");
+System.out.println();
+System.out.println("TreeMap");
+System.out.println(h2);
+System.out.println("DescendingkeySet:"+h2.descendingKeySet());
+System.out.println("DescendingMap:"+h2.descendingMap());
+System.out.println("First element:"+h2.firstKey());
+System.out.println("last element:"+h2.lastKey());
+System.out.println("HeadMap:"+h2.headMap(3));
+System.out.println("TailMap:"+h2.tailMap(2));
+System.out.println("SubMap:"+h2.subMap(2,5));
+ }
+}

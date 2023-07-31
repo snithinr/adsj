@@ -1,0 +1,146 @@
+//4a.Bounded types and wildcard arguments
+import java.util.*;
+public class Sample<T extends Number>
+{
+ T[] nums;
+public Sample(T[] nums){
+ this.nums=nums
+ }
+public double sum(){
+ double s=0.0;
+ for(Number n:nums){
+ s+=n.doubleValue();
+ }
+ return s;
+}
+public boolean compareSum(Sample<?> s1){
+ if(this.sum()==s1.sum())
+return true;
+ else
+return false;
+ }
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter array size:");
+int n=sc.nextInt();
+Integer[] arr=new Integer[n];
+System.out.println("Enter array elements:");
+for(int i=0;i<n;i++){
+arr[i]=sc.nextInt();
+}
+Sample<Number> s=new Sample<>(arr);
+System.out.println("Sum1:"+s.sum());
+System.out.println("Enter array size:");
+int n1=sc.nextInt();
+Integer[] arr1=new Integer[n1];
+System.out.println("Enter array elements:");
+for(int i=0;i<n1;i++){
+arr1[i]=sc.nextInt();
+}
+Sample<Number> s1=new Sample<>(arr1);
+System.out.println("Sum1:"+s1.sum());
+System.out.println("Sum1 equals sum2:"+s.compareSum(s1));
+}
+}
+
+
+
+
+
+4b.
+//Queue using user defined linked list
+class QL<T>{
+ private class Node{
+ private T value;
+ private Node next;
+ }
+ private Node front=null,rear=null;
+ public void enqueue(T item){
+ Node temp=new Node();
+ temp.value=item;
+ temp.next=null;
+ if(front==null & rear==null)
+ front=rear=temp;
+ else
+ rear.next=temp;
+ rear=temp;
+}
+public void dequeue(){
+ if(front==null)
+ System.out.println("Queue is empty");
+ else {
+ T x=front.value;
+ front=front.next;
+ System.out.println(x+" is deleted");
+}
+}
+public void display(){
+ if(front==null)
+ System.out.println("Queue is empty");
+ else{
+ Node temp=front;
+ while(temp!=null) {
+ System.out.println(temp.value+" ");
+ temp=temp.next;
+}
+ }
+}
+}
+public class QLT{
+ public static void main(String[] args) {
+ Scanner sc=new Scanner(System.in);
+ System.out.println("Enter datatype choice :\n1.Integer\n2.String");
+ int n1=sc.nextInt();
+ if(n1==1){
+ QL<Integer> q=new QL<>();
+ System.out.println("MENU\n1.enqueue\n2.dequeue\n3.display\nAny other number exit");
+ int ch;
+ do{
+ System.out.println("Enter the choice :");
+ ch=sc.nextInt();
+ switch(ch){
+ case 1:
+ System.out.println("Enter the element:");
+ int x=sc.nextInt();
+ q.enqueue(x);
+ break;
+case 2:
+ q.dequeue();
+ break;
+ case 3:
+ q.display();
+ break;
+ default:
+ System.out.println("EXIT");
+ System.exit(0);
+ }
+ }while(ch<=3);
+ }
+ if(n1==2){
+ QL<String> q=new QL<>();
+ System.out.println("MENU\n1.enqueue\n2.dequeue\n3.display\nAny other number texit");
+ int ch;
+ do{
+ System.out.println("Enter the choice :");
+ ch=sc.nextInt();
+ switch(ch){
+ case 1:
+ System.out.println("Enter the element:");
+ sc.nextLine();
+ String x=sc.nextLine();
+ q.enqueue(x);
+ break;
+ case 2:
+ q.dequeue();
+ break;
+ case 3:
+ q.display();
+ break;
+ default:
+ System.out.println("EXIT");
+ System.exit(0);
+}
+ }while(ch<=3);
+}
+ }
+}
