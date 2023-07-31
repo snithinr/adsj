@@ -1,0 +1,1853 @@
+1 Java Lab Programs
+2 _________________________________________________________________________
+3 1)Write a Java program to demonstrate the use of bounded type parameters
+4 and wild card arguments
+5 
+6 
+7 public class BoundedTypeParametersAndWildcards {
+8 
+9 // Example of a bounded type parameter
+10 public static <T extends Number> double sum(T[] array) {
+11 double total = 0;
+12 for (T element : array) {
+13 total += element.doubleValue();
+14 }
+15 return total;
+16 }
+17 
+18 // Example of a wildcard type parameter
+19 public static void printList(List<?> list) {
+20 for (Object item : list) {
+21 System.out.print(item + " ");
+22 }
+23 System.out.println();
+24 }
+25 
+26 public static void main(String[] args) {
+27 // Example of using a bounded type parameter
+28 Integer[] intArray = {1, 2, 3, 4, 5};
+29 double intArraySum = sum(intArray);
+30 System.out.println("Sum of Integer array: " + intArraySum);
+31 
+32 Double[] doubleArray = {1.1, 2.2, 3.3, 4.4, 5.5};
+33 double doubleArraySum = sum(doubleArray);
+34 System.out.println("Sum of Double array: " + doubleArraySum);
+35 
+36 // Example of using a wildcard type parameter
+37 List<Integer> intList = new ArrayList<>();
+38 intList.add(1);
+39 intList.add(2);
+40 intList.add(3);
+41 System.out.print("Integer list: ");
+42 printList(intList);
+43 
+44 List<Double> doubleList = new ArrayList<>();
+45 doubleList.add(1.1);
+46 doubleList.add(2.2);
+47 doubleList.add(3.3);
+48 System.out.print("Double list: ");
+49 printList(doubleList);
+50 }
+51 }
+52 ________________________________________________________________________________
+53 2)write a java program to implement iterators on Linked list and Array List
+54 
+55 package com.college.cvr;
+56 
+57 import java.util.*;
+58 
+59 public class IteratorDemo
+60 {
+61 public static void main(String[] args) {
+62 
+63 ArrayList<Integer> al = new ArrayList<>();
+64 al.add(23);
+65 al.add(52);
+66 al.add(74);
+67 al.add(34);
+68 
+69 System.out.println("The list is: "+al);
+70 Iterator<Integer> iterator= al.iterator();
+71 
+72 System.out.println("The iterator values are: ");
+73 while(iterator.hasNext()){
+74 System.out.print(iterator.next()+" ");
+75 System.out.println();
+76 }
+77 Collections.sort(al);
+78 System.out.println("sorted order:"+al);
+79 
+80 LinkedList<Integer> ll= new LinkedList<>();
+81 ll.add(44);
+82 ll.add(6);
+83 ll.add(23);
+84 ll.add(5);
+85 
+86 System.out.println("\nThe linked list is: "+ll);
+87 
+88 Iterator<Integer> itr = ll.iterator();
+89 
+90 System.out.println("The iterator values are: ");
+91 while(itr.hasNext()){
+92 System.out.print(itr.next()+" ");
+93 System.out.println();
+94 }
+95 Collections.sort(ll);
+96 System.out.println("sorted order:"+ll);
+97 }
+98 }
+99 _________________________________________________________________________________________
+_
+100 3 A)
+101 Implement Generic stack to deal with the Integer Double and String data using user
+102 defined arrays and Linked List
+103 package com.cvr.lab.adsj;
+104 
+105 public class Dstack<T> {
+106 private T[] stackArray;
+107 private int top;
+108 private int maxSize;
+109 
+110 public Dstack(int maxSize) {
+111 this.maxSize = maxSize;
+112 stackArray = (T[]) new Object[maxSize];
+113 top = -1;
+114 }
+115 
+116 public void push(T element) {
+117 if (top == maxSize - 1) {
+118 System.out.println("Stack overflow!");
+119 } else {
+120 top++;
+121 stackArray[top] = element;
+122 }
+123 }
+124 
+125 public T pop() {
+126 if (top == -1) {
+127 System.out.println("Stack underflow!");
+128 return null;
+129 } else {
+130 T element = stackArray[top];
+131 top--;
+132 return element;
+133 }
+134 }
+135 
+136 public T peek() {
+137 if (top == -1) {
+138 System.out.println("Stack is empty!");
+139 return null;
+140 } else {
+141 return stackArray[top];
+142 }
+143 }
+144 
+145 public boolean isEmpty() {
+146 return (top == -1);
+147 }
+148 
+149 public boolean isFull() {
+150 return (top == maxSize - 1);
+151 }
+152 }
+153 _______________________________________________________________________________
+154 USer Defined Linked LIst
+155 
+156 package com.cvr.lab.adsj;
+157 
+158 public class MyStack<T> {
+159 private Node<T> top;
+160 private int size;
+161 
+162 public MyStack() {
+163 top = null;
+164 size = 0;
+165 }
+166 
+167 public void push(T element) {
+168 Node<T> newNode = new Node<>(element);
+169 newNode.next = top;
+170 top = newNode;
+171 size++;
+172 }
+173 
+174 public T pop() {
+175 if (top == null) {
+176 System.out.println("Stack underflow!");
+177 return null;
+178 } else {
+179 T element = top.data;
+180 top = top.next;
+181 size--;
+182 return element;
+183 }
+184 }
+185 
+186 public T peek() {
+187 if (top == null) {
+188 System.out.println("Stack is empty!");
+189 return null;
+190 } else {
+191 return top.data;
+192 }
+193 }
+194 
+195 public boolean isEmpty() {
+196 return (top == null);
+197 }
+198 
+199 public int size() {
+200 return size;
+201 }
+202 
+203 private static class Node<T> {
+204 private T data;
+205 private Node<T> next;
+206 
+207 public Node(T data) {
+208 this.data = data;
+209 this.next = null;
+210 }
+211 }
+212 }
+213 ________________________________________________________________________________
+214 3A Main Class
+215 package com.cvr.lab.adsj;
+216 
+217 public class DstackMain {
+218 public static void main(String[] args) {
+219 // Stack of integers
+220 Dstack<Integer> intStack = new Dstack<>(5);
+221 intStack.push(10);
+222 intStack.push(20);
+223 intStack.push(30);
+224 System.out.println(intStack.pop()); // 30
+225 System.out.println(intStack.pop()); // 20
+226 System.out.println(intStack.peek()); // 10
+227 
+228 // Stack of doubles
+229 Dstack<Double> doubleStack = new Dstack<>(5);
+230 doubleStack.push(3.14);
+231 doubleStack.push(2.71);
+232 System.out.println(doubleStack.pop()); // 2.71
+233 System.out.println(doubleStack.peek()); // 3.14
+234 
+235 // Stack of strings
+236 Dstack<String> stringStack = new Dstack<>(5);
+237 stringStack.push("hello");
+238 stringStack.push("world");
+239 stringStack.push("!");
+240 System.out.println(stringStack.pop()); // !
+241 System.out.println(stringStack.peek()); // world
+242 }
+243 }
+244 _________________________________________________________________________________________
+_________
+245 3B) Implement Generic Queue to deal with the Integer Double and String data using user
+246 defined arrays and Linked List
+247 
+248 ArrayListpackage com.cvr.lab.adsj;
+249 
+250 public class MyQueue<T> {
+251 
+252 private T[] queue;
+253 private int front;
+254 private int rear;
+255 private int size;
+256 
+257 public MyQueue(int capacity) {
+258 queue = (T[]) new Object[capacity];
+259 front = 0;
+260 rear = -1;
+261 size = 0;
+262 }
+263 
+264 public void enqueue(T element) {
+265 if (isFull()) {
+266 throw new IllegalStateException("Queue is full");
+267 }
+268 rear = (rear + 1) % queue.length;
+269 queue[rear] = element;
+270 size++;
+271 }
+272 
+273 public T dequeue() {
+274 if (isEmpty()) {
+275 throw new IllegalStateException("Queue is empty");
+276 }
+277 T element = queue[front];
+278 queue[front] = null;
+279 front = (front + 1) % queue.length;
+280 size--;
+281 return element;
+282 }
+283 
+284 public T peek() {
+285 if (isEmpty()) {
+286 throw new IllegalStateException("Queue is empty");
+287 }
+288 return queue[front];
+289 }
+290 
+291 public int size() {
+292 return size;
+293 }
+294 
+295 public boolean isEmpty() {
+296 return size == 0;
+297 }
+298 
+299 public boolean isFull() {
+300 return size == queue.length;
+301 }
+302 }
+303 
+304 _________________________________________________________________________________________
+_________
+305 Linked List
+306 package com.cvr.lab.adsj;
+307 
+308 public class MyQueue1<T> {
+309 
+310 private Node<T> front;
+311 private Node<T> rear;
+312 private int size;
+313 
+314 public MyQueue1() {
+315 front = null;
+316 rear = null;
+317 size = 0;
+318 }
+319 
+320 public void enqueue(T element) {
+321 Node<T> newNode = new Node<>(element);
+322 if (isEmpty()) {
+323 front = newNode;
+324 } else {
+325 rear.setNext(newNode);
+326 }
+327 rear = newNode;
+328 size++;
+329 }
+330 
+331 public T dequeue() {
+332 if (isEmpty()) {
+333 throw new IllegalStateException("Queue is empty");
+334 }
+335 T element = front.getElement();
+336 front = front.getNext();
+337 size--;
+338 if (isEmpty()) {
+339 rear = null;
+340 }
+341 return element;
+342 }
+343 
+344 public T peek() {
+345 if (isEmpty()) {
+346 throw new IllegalStateException("Queue is empty");
+347 }
+348 return front.getElement();
+349 }
+350 
+351 public int size() {
+352 return size;
+353 }
+354 
+355 public boolean isEmpty() {
+356 return size == 0;
+357 }
+358 
+359 private static class Node<T> {
+360 private T element;
+361 private Node<T> next;
+362 
+363 public Node(T element) {
+364 this.element = element;
+365 this.next = null;
+366 }
+367 
+368 public T getElement() {
+369 return element;
+370 }
+371 
+372 public Node<T> getNext() {
+373 return next;
+374 }
+375 
+376 public void setNext(Node<T> next) {
+377 this.next = next;
+378 }
+379 }
+380 }
+381 _________________________________________________________________________________________
+_________
+382 Main Method
+383 package com.cvr.lab.adsj;
+384 
+385 public class MyQueueMain {
+386 public static void main(String[] args) {
+387 // User-defined array implementation
+388 MyQueue<Integer> intQueue = new MyQueue<>(5);
+389 intQueue.enqueue(1);
+390 intQueue.enqueue(2);
+391 intQueue.enqueue(3);
+392 System.out.println(intQueue.peek()); // Output: 1
+393 intQueue.dequeue();
+394 System.out.println(intQueue.peek()); // Output: 2
+395 
+396 MyQueue<Double> doubleQueue = new MyQueue<>(5);
+397 doubleQueue.enqueue(1.5);
+398 doubleQueue.enqueue(2.5);
+399 doubleQueue.enqueue(3.5);
+400 System.out.println(doubleQueue.peek()); // Output: 1.5
+401 doubleQueue.dequeue();
+402 System.out.println(doubleQueue.peek()); // Output: 2.5
+403 
+404 MyQueue<String> stringQueue = new MyQueue<>(5);
+405 stringQueue.enqueue("hello");
+406 stringQueue.enqueue("world");
+407 stringQueue.enqueue("java");
+408 System.out.println(stringQueue.peek()); // Output: hello
+409 stringQueue.dequeue();
+410 System.out.println(stringQueue.peek()); // Output: world
+411 }
+412 
+413 }
+414 _________________________________________________________________________________________
+_
+415 4) A &B
+416 Write a java program to implement Generic Stack Using ArrayList and LinkedList
+417 
+418 ArrayList - Generic Stack
+419 package com.cvr.lab.adsj;
+420 
+421 import java.util.ArrayList;
+422 
+423 public class MyGenericStack<E> {
+424 private ArrayList<E> stack;
+425 
+426 public MyGenericStack() {
+427 stack = new ArrayList<>();
+428 }
+429 
+430 public void push(E element) {
+431 stack.add(element);
+432 }
+433 
+434 public E pop() {
+435 if (stack.isEmpty()) {
+436 return null;
+437 }
+438 return stack.remove(stack.size() - 1);
+439 }
+440 
+441 public E peek() {
+442 if (stack.isEmpty()) {
+443 return null;
+444 }
+445 return stack.get(stack.size() - 1);
+446 }
+447 
+448 public boolean isEmpty() {
+449 return stack.isEmpty();
+450 }
+451 
+452 public int size() {
+453 return stack.size();
+454 }
+455 }
+456 
+457 Main Method :
+458 package com.cvr.lab.adsj;
+459 
+460 public class MyGAL {
+461 
+462 public static void main(String[] args) {
+463 MyGenericStack<Integer> intStack = new MyGenericStack<>();
+464 intStack.push(1);
+465 intStack.push(2);
+466 intStack.push(3);
+467 
+468 System.out.println(intStack.peek()); // Output: 3
+469 
+470 intStack.pop();
+471 System.out.println(intStack.peek()); // Output: 2
+472 
+473 MyGenericStack<String> stringStack = new MyGenericStack<>();
+474 stringStack.push("hello");
+475 stringStack.push("world");
+476 stringStack.push("!");
+477 
+478 System.out.println(stringStack.peek()); // Output: !
+479 
+480 stringStack.pop();
+481 System.out.println(stringStack.peek()); // Output: world
+482 }
+483 }
+484 
+485 
+486 --------
+487 Linked Lsit Generic stack
+488 package com.cvr.lab.adsj;
+489 
+490 import java.util.LinkedList;
+491 
+492 public class MyGenericStack1<E> {
+493 private LinkedList<E> stack;
+494 
+495 public MyGenericStack1() {
+496 stack = new LinkedList<>();
+497 }
+498 
+499 public void push(E element) {
+500 stack.addLast(element);
+501 }
+502 
+503 public E pop() {
+504 if (stack.isEmpty()) {
+505 return null;
+506 }
+507 return stack.removeLast();
+508 }
+509 
+510 public E peek() {
+511 if (stack.isEmpty()) {
+512 return null;
+513 }
+514 return stack.getLast();
+515 }
+516 
+517 public boolean isEmpty() {
+518 return stack.isEmpty();
+519 }
+520 
+521 public int size() {
+522 return stack.size();
+523 }
+524 }
+525 
+526 MainMethod :
+527 package com.cvr.lab.adsj;
+528 
+529 public class MyGll {
+530 
+531 public static void main(String[] args) {
+532 MyGenericStack1<Integer> intStack = new MyGenericStack1<>();
+533 intStack.push(1);
+534 intStack.push(2);
+535 intStack.push(3);
+536 
+537 System.out.println(intStack.peek()); // Output: 3
+538 
+539 intStack.pop();
+540 System.out.println(intStack.peek()); // Output: 2
+541 
+542 MyGenericStack1<String> stringStack = new MyGenericStack1<>();
+543 stringStack.push("hello");
+544 stringStack.push("world");
+545 stringStack.push("!");
+546 
+547 System.out.println(stringStack.peek()); // Output: !
+548 
+549 stringStack.pop();
+550 System.out.println(stringStack.peek()); // Output: world
+551 }
+552 }
+553 
+554 
+555 _________________________________________________________________________________________
+_______________
+556 5) Write a java program to implement Generic Queue Using ArrayList and LinkedList
+557 
+558 ArrayList_Generic Queue
+559 
+560 package com.cvr.lab.adsj;
+561 
+562 
+563 import java.util.ArrayList;
+564 
+565 public class MyGenericQueue<E>
+566 {
+567 private ArrayList<E> queue;
+568 
+569 public MyGenericQueue() {
+570 queue = new ArrayList<>();
+571 }
+572 
+573 public void enqueue(E element) {
+574 queue.add(element);
+575 }
+576 
+577 public E dequeue() {
+578 if (queue.isEmpty()) {
+579 return null;
+580 }
+581 return queue.remove(0);
+582 }
+583 
+584 public E peek() {
+585 if (queue.isEmpty()) {
+586 return null;
+587 }
+588 return queue.get(0);
+589 }
+590 
+591 public boolean isEmpty() {
+592 return queue.isEmpty();
+593 }
+594 
+595 public int size() {
+596 return queue.size();
+597 }
+598 }
+599 
+600 
+601 Main Method ArrayList _Generic Queue
+602 package com.cvr.lab.adsj;
+603 
+604 public class MYGQAL{
+605 public static void main(String[] args) {
+606 MyGenericQueue<Integer> intQueue = new MyGenericQueue<>();
+607 intQueue.enqueue(1);
+608 intQueue.enqueue(2);
+609 intQueue.enqueue(3);
+610 
+611 System.out.println(intQueue.peek()); // Output: 1
+612 
+613 intQueue.dequeue();
+614 System.out.println(intQueue.peek()); // Output: 2
+615 
+616 MyGenericQueue<String> stringQueue = new MyGenericQueue<>();
+617 stringQueue.enqueue("hello");
+618 stringQueue.enqueue("world");
+619 stringQueue.enqueue("!");
+620 
+621 System.out.println(stringQueue.peek()); // Output: hello
+622 
+623 stringQueue.dequeue();
+624 System.out.println(stringQueue.peek()); // Output: world
+625 }
+626 }
+627 
+628 LinkedList _ Generic Queue
+629 package com.cvr.lab.adsj;
+630 
+631 import java.util.LinkedList;
+632 
+633 public class MyGenericQueue1<E> {
+634 private LinkedList<E> queue;
+635 
+636 public MyGenericQueue1() {
+637 queue = new LinkedList<>();
+638 }
+639 
+640 public void enqueue(E element) {
+641 queue.addLast(element);
+642 }
+643 
+644 public E dequeue() {
+645 if (queue.isEmpty()) {
+646 return null;
+647 }
+648 return queue.removeFirst();
+649 }
+650 
+651 public E peek() {
+652 if (queue.isEmpty()) {
+653 return null;
+654 }
+655 return queue.getFirst();
+656 }
+657 
+658 public boolean isEmpty() {
+659 return queue.isEmpty();
+660 }
+661 
+662 public int size() {
+663 return queue.size();
+664 }
+665 }
+666 
+667 Main Method LinkedList _generic Queue
+668 
+669 package com.cvr.lab.adsj;
+670 
+671 public class MYGQLL {
+672 
+673 public static void main(String[] args) {
+674 MyGenericQueue1<Integer> intQueue = new MyGenericQueue1<>();
+675 intQueue.enqueue(1);
+676 intQueue.enqueue(2);
+677 intQueue.enqueue(3);
+678 
+679 System.out.println(intQueue.peek()); // Output: 1
+680 
+681 intQueue.dequeue();
+682 System.out.println(intQueue.peek()); // Output: 2
+683 
+684 MyGenericQueue1<String> stringQueue = new MyGenericQueue1<>();
+685 stringQueue.enqueue("hello");
+686 stringQueue.enqueue("world");
+687 stringQueue.enqueue("!");
+688 
+689 System.out.println(stringQueue.peek()); // Output: hello
+690 
+691 stringQueue.dequeue();
+692 System.out.println(stringQueue.peek()); // Output: world
+693 }
+694 }
+695 
+696 
+697 _________________________________________________________________________________________
+______________
+698 6) Write a java program to demonstrate the use of collection classes
+699 A) HashSet
+700 B) LinkedHashSet
+701 c) Treeset
+702 Simple Collection classes
+703 Hashset :
+704 
+705 package com.college.cvr;
+706 
+707 import java.util.HashSet;
+708 
+709 public class HashSetExample {
+710 public static void main(String[] args) {
+711 // Create a new HashSet
+712 HashSet<String> hashSet = new HashSet<>();
+713 
+714 // Add some elements
+715 hashSet.add("Alice");
+716 hashSet.add("Bob");
+717 hashSet.add("Charlie");
+718 hashSet.add("Dev");
+719 hashSet.add("Edon");
+720 
+721 // Print out the HashSet
+722 System.out.println("HashSet: " + hashSet);
+723 // Iterate over the elements in the HashSet
+724 for (String element : hashSet) {
+725 System.out.println(element);
+726 }
+727 // Remove an element
+728 hashSet.remove("Charlie");
+729 
+730 // Print out the updated HashSet
+731 System.out.println("Updated HashSet: " + hashSet);
+732 
+733 // Check if an element is in the HashSet
+734 boolean contains = hashSet.contains("Bob");
+735 System.out.println("HashSet contains Bob: " + contains);
+736 
+737 // Get the size of the HashSet
+738 int size = hashSet.size();
+739 System.out.println("HashSet size: " + size);
+740 
+741 // Clear the HashSet
+742 hashSet.clear();
+743 
+744 // Print out the empty HashSet
+745 System.out.println("Empty HashSet: " + hashSet);
+746 
+747 
+748 
+749 }
+750 }
+751 _________________________________________________________________________________________
+____
+752 LinkedHashSet :
+753 package com.college.cvr;
+754 import java.util.LinkedHashSet;
+755 
+756 public class LinkedHashSetExample {
+757 public static void main(String[] args) {
+758 // Create a new HashSet
+759 LinkedHashSet<String> lhs = new LinkedHashSet<>();
+760 
+761 // Add some elements
+762 lhs.add("Alice");
+763 lhs.add("Bob");
+764 lhs.add("Charlie");
+765 lhs.add("Dev");
+766 lhs.add("Edon");
+767 
+768 // Print out the HashSet
+769 System.out.println("LinkedHashSet: " + lhs);
+770 // Iterate over the elements in the HashSet
+771 for (String element :lhs) {
+772 System.out.println(element);
+773 }
+774 // Remove an element
+775 lhs.remove("Charlie");
+776 
+777 // Print out the updated HashSet
+778 System.out.println("Updated Linked HashSet: " + lhs);
+779 
+780 // Check if an element is in the HashSet
+781 boolean contains = lhs.contains("Bob");
+782 System.out.println(" Linked HashSet contains Bob: " + contains);
+783 
+784 // Get the size of the HashSet
+785 int size = lhs.size();
+786 System.out.println("Linked HashSet size: " + size);
+787 
+788 // Clear the HashSet
+789 lhs.clear();
+790 
+791 // Print out the empty HashSet
+792 System.out.println("Empty LinkedHashSet: " +lhs);
+793 
+794 
+795 
+796 }
+797 }
+798 
+799 _________________________________________________________________________________________
+___
+800 TreeSet:
+801 package com.college.cvr;
+802 import java.util.TreeSet;
+803 
+804 
+805 public class TreeSetExample {
+806 public static void main(String[] args) {
+807 // Create a new TreeSet
+808 TreeSet<String> ts = new TreeSet<>();
+809 
+810 // Add some elements
+811 ts.add("Alice");
+812 ts.add("Bob");
+813 ts.add("Charlie");
+814 ts.add("Dev");
+815 ts.add("Edon");
+816 
+817 // Print out the TreeSet
+818 System.out.println("TreeSet: " + ts);
+819 // Iterate over the elements in the TreeSet
+820 for (String element :ts) {
+821 System.out.println(element);
+822 }
+823 // Remove an element
+824 ts.remove("Charlie");
+825 
+826 // Print out the updated TreeSet
+827 System.out.println("Updated TreeSet: " + ts);
+828 
+829 // Check if an element is in the TreeSet
+830 boolean contains = ts.contains("Bob");
+831 System.out.println("TreeSet contains Bob: " + contains);
+832 
+833 // Get the size of the TreeSet
+834 int size = ts.size();
+835 System.out.println("TreeSet size: " + size);
+836 //get for the floor
+837 System.out.println("Floor of the B:"+ts.floor("B"));
+838 // get the ceiling
+839 System.out.println("ceiling of the Bob:"+ts.ceiling("Bob"));
+840 System.out.println("Head set of the B:"+ts.headSet("B"));
+841 System.out.println("Tail set of the B:"+ts.tailSet("B"));
+842 // Clear the TreeSet
+843 ts.clear();
+844 // Print out the empty TreeSet
+845 System.out.println("Empty TreeSet: " +ts);
+846 
+847 
+848 
+849 }
+850 }
+851 _________________________________________________________________________________________
+________________________
+852 7) Write a java program to create a class called person with income
+853 ,age,and aname as its memebers Read Set A from the user and compute the following Sets
+854 i) Set B persons whose age > 60
+855 ii) Set C persons whose income <10000
+856 iii) B union C
+857 
+858 Person class:
+859 package com.cvr.lab.adsj;
+860 
+861 import java.util.*;
+862 
+863 class Person {
+864 @Override
+865 public String toString() {
+866 return "Person [income=" + income + ", age=" + age + ", name=" + name + "]";
+867 }
+868 
+869 private int income;
+870 private int age;
+871 private String name;
+872 
+873 public Person(int income, int age, String name) {
+874 this.income = income;
+875 this.age = age;
+876 this.name = name;
+877 }
+878 
+879 public int getIncome() {
+880 return income;
+881 }
+882 
+883 public int getAge() {
+884 return age;
+885 }
+886 
+887 public String getName() {
+888 return name;
+889 }
+890 }
+891 
+892 
+893 
+894 -----
+895 Main Method :
+896 package com.cvr.lab.adsj;
+897 
+898 import java.util.ArrayList;
+899 import java.util.HashSet;
+900 import java.util.List;
+901 import java.util.Scanner;
+902 import java.util.Set;
+903 
+904 public class PersonSet {
+905 public static void main(String[] args) {
+906 Scanner sc = new Scanner(System.in);
+907 
+908 // Read Set A of persons from user
+909 System.out.println("Enter the number of persons in Set A:");
+910 int n = sc.nextInt();
+911 List<Person> A = new ArrayList<>();
+912 for (int i = 0; i < n; i++) {
+913 System.out.println("Enter the income, age, and name of person " + (i+1) + ":"
+);
+914 int income = sc.nextInt();
+915 int age = sc.nextInt();
+916 String name = sc.next();
+917 A.add(new Person(income, age, name));
+918 }
+919 
+920 
+921 // Compute Set B of persons whose age > 60
+922 Set<Person> B = new HashSet<>();
+923 for (Person p : A) {
+924 if (p.getAge() > 60) {
+925 B.add(p);
+926 }
+927 }
+928 
+929 // Compute Set C of persons whose income < 10000
+930 Set<Person> C = new HashSet<>();
+931 for (Person p : A) {
+932 if (p.getIncome() < 10000) {
+933 C.add(p);
+934 }
+935 }
+936 
+937 // Compute B ∩ C
+938 Set<Person> BunionC = new HashSet<>(B);
+939 BunionC.retainAll(C);
+940 
+941 // Print the results
+942 System.out.println("Set A :"+A);
+943 System.out.println("Set B consits whose age > 60 :");
+944 for (Person p : B) {
+945 System.out.println(p.getName());
+946 }
+947 
+948 System.out.println("Set C Whose salary < 10000:");
+949 for (Person p : C) {
+950 System.out.println(p.getName());
+951 }
+952 
+953 System.out.println("Set B Union C:");
+954 for (Person p : BunionC) {
+955 System.out.println(p.getName());
+956 }
+957 }
+958 }
+959 
+960 8) write a program to demonstrate the use of following classes
+961 A) HashMap
+962 B) Linked HashMap
+963 C) Tree Map
+964 
+965 HashMap :
+966 package com.college.cvr;
+967 
+968 import java.util.HashMap;
+969 import java.util.Map;
+970 
+971 public class HashMapExample {
+972 public static void main(String[] args) {
+973 // Create a new hashmap
+974 HashMap<String, Integer> map = new HashMap<>(12,0.75f);
+975 
+976 // Add some key-value pairs
+977 map.put("Alice", 25);
+978 map.put("Bob", 30);
+979 map.put("Charlie", 35);
+980 map.put("Dev", 40);
+981 map.put("Edon",50);
+982 // Print out the hashmap
+983 System.out.println("HashMap: " + map);
+984 
+985 // Get the value associated with a key
+986 int age = map.get("Bob");
+987 System.out.println("Bob's age is " + age);
+988 
+989 // Remove a key-value pair
+990 map.remove("Charlie");
+991 
+992 // Print out the updated hashmap
+993 System.out.println("Updated HashMap: " + map);
+994 
+995 // Check if a key is in the hashmap
+996 boolean containsKey = map.containsKey("Alice");
+997 System.out.println("HashMap contains key Alice: " + containsKey);
+998 
+999 // Check if a value is in the hashmap
+1000 boolean containsValue = map.containsValue(30);
+1001 System.out.println("HashMap contains value 30: " + containsValue);
+1002 
+1003 // Get the size of the hashmap
+1004 int size = map.size();
+1005 System.out.println("HashMap size: " + size);
+1006 // to get the value of each added key and value 
+1007 for (Map.Entry<String, Integer> entry : map.entrySet()) {
+1008 String key = entry.getKey();
+1009 int value = entry.getValue();
+1010 System.out.println("key and value =>"+key + " :" + value );
+1011 }
+1012 // Clear the hashmap
+1013 map.clear();
+1014 
+1015 // Print out the empty hashmap
+1016 System.out.println("Empty HashMap: " + map);
+1017 }
+1018 }
+1019 
+1020 
+________________________________________________________________________________________
+_________________________________
+1021 Linked HashMap :
+1022 
+1023 package com.college.cvr;
+1024 
+1025 import java.util.LinkedHashMap;
+1026 import java.util.Map;
+1027 
+1028 public class LinkedHashMapexample {
+1029 public static void main(String[] args) {
+1030 // Create a new hashmap
+1031 LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+1032 
+1033 // Add some key-value pairs
+1034 map.put("Alice", 25);
+1035 map.put("Bob", 30);
+1036 map.put("Charlie", 35);
+1037 map.put("Dev", 40);
+1038 map.put("Edon",50);
+1039 // Print out the linkedhashmap
+1040 System.out.println("LinkedHashMap: " + map);
+1041 
+1042 // Get the value associated with a key
+1043 int age = map.get("Bob");
+1044 System.out.println("Bob's age is " + age);
+1045 
+1046 // Remove a key-value pair
+1047 map.remove("Charlie");
+1048 
+1049 // Print out the updated linkedhashmap
+1050 System.out.println("Updated LinkedHashMap: " + map);
+1051 
+1052 // Check if a key is in the hashmap
+1053 boolean containsKey = map.containsKey("Alice");
+1054 System.out.println("LinkedHashMap contains key Alice: " + containsKey);
+1055 
+1056 // Check if a value is in the Linkedhashmap
+1057 boolean containsValue = map.containsValue(30);
+1058 System.out.println("LinkedHashMap contains value 30: " + containsValue);
+1059 
+1060 // Get the size of the hashmap
+1061 int size = map.size();
+1062 System.out.println("LinkedHashMap size: " + size);
+1063 // to get the value of each added key and value 
+1064 for (Map.Entry<String, Integer> entry : map.entrySet()) {
+1065 String key = entry.getKey();
+1066 int value = entry.getValue();
+1067 System.out.println("key and value =>"+key + " :" + value );
+1068 }
+1069 // Clear the hashmap
+1070 map.clear();
+1071 
+1072 // Print out the empty hashmap
+1073 System.out.println("Empty LinkedHashMap: " + map);
+1074 }
+1075 }
+1076 _________________________________________________________________________________________
+_____________________________
+1077 TreeMap:
+1078 package com.college.cvr;
+1079 
+1080 import java.util.TreeMap;
+1081 import java.util.Map;
+1082 
+1083 public class TreeMapexample {
+1084 public static void main(String[] args) {
+1085 // Create a new hashmap
+1086 TreeMap<String, Integer> map = new TreeMap<>();
+1087 
+1088 // Add some key-value pairs
+1089 map.put("Alice", 25);
+1090 map.put("Bob", 30);
+1091 map.put("Charlie", 35);
+1092 map.put("Dev", 40);
+1093 map.put("Edon",50);
+1094 // Print out the TreeMap
+1095 System.out.println("TreeMap: " + map);
+1096 
+1097 // Get the value associated with a key
+1098 int age = map.get("Bob");
+1099 System.out.println("Bob's age is " + age);
+1100 
+1101 // Remove a key-value pair
+1102 map.remove("Charlie");
+1103 
+1104 // Print out the updated TreeMap
+1105 System.out.println("Updated TreeMap: " + map);
+1106 
+1107 // Check if a key is in the hashmap
+1108 boolean containsKey = map.containsKey("Alice");
+1109 System.out.println("TreeMap contains key Alice: " + containsKey);
+1110 
+1111 // Check if a value is in the TreeMap
+1112 boolean containsValue = map.containsValue(30);
+1113 System.out.println("TreeMap contains value 30: " + containsValue);
+1114 
+1115 // Get the size of the hashmap
+1116 int size = map.size();
+1117 System.out.println("TreeMap size: " + size);
+1118 // to get the value of each added key and value 
+1119 for (Map.Entry<String, Integer> entry : map.entrySet()) {
+1120 String key = entry.getKey();
+1121 int value = entry.getValue();
+1122 System.out.println("key and value =>"+key + " :" + value );
+1123 }
+1124 System.out.println("Ceiling:"+map.ceilingEntry("Alice"));
+1125 System.out.println("Floor:"+map.floorEntry("Alice"));
+1126 System.out.println("Higher:"+map.higherKey("Alice"));
+1127 System.out.println("Lower:"+map.lowerKey("Bob"));
+1128 System.out.println("Head map:"+map.headMap("Dev"));
+1129 System.out.println("Tail map :"+map.tailMap("Alice"));
+1130 // Clear the hashmap
+1131 map.clear();
+1132 
+1133 // Print out the empty hashmap
+1134 System.out.println("Empty TreeMap: " + map);
+1135 }
+1136 }
+1137 -----------------------------------------------------------------------------------------
+------
+1138 9. Write a java program to the sorted chain using linked list
+1139 //NEED TO CHANGE 
+1140 package java2023;
+1141 
+1142 import java.util.LinkedList;
+1143 
+1144 public class SortedChain<T extends Comparable<T>> {
+1145 private LinkedList<T>[] hashTable;
+1146 private int tableSize;
+1147 private int currentSize;
+1148 
+1149 public SortedChain(int size) {
+1150 tableSize = size;
+1151 currentSize = 0;
+1152 hashTable = new LinkedList[tableSize];
+1153 for (int i = 0; i < tableSize; i++) {
+1154 hashTable[i] = new LinkedList<>();
+1155 }
+1156 }
+1157 
+1158 public void insert(T data) {
+1159 int index = hash(data);
+1160 LinkedList<T> chain = hashTable[index];
+1161 int i = 0;
+1162 while (i < chain.size() && data.compareTo(chain.get(i)) > 0) {
+1163 i++;
+1164 }
+1165 chain.add(i, data);
+1166 currentSize++;
+1167 }
+1168 
+1169 public boolean delete(T data) {
+1170 int index = hash(data);
+1171 LinkedList<T> chain = hashTable[index];
+1172 boolean found = chain.remove(data);
+1173 if (found) {
+1174 currentSize--;
+1175 }
+1176 return found;
+1177 }
+1178 
+1179 public boolean search(T data) {
+1180 int index = hash(data);
+1181 LinkedList<T> chain = hashTable[index];
+1182 return chain.contains(data);
+1183 }
+1184 
+1185 private int hash(T data) {
+1186 return Math.abs(data.hashCode()) % tableSize;
+1187 }
+1188 
+1189 public void display() {
+1190 for (int i = 0; i < tableSize; i++) {
+1191 System.out.print("Index " + i + ": ");
+1192 LinkedList<T> chain = hashTable[i];
+1193 for (T data : chain) {
+1194 System.out.print(data + " -> ");
+1195 }
+1196 System.out.println("null");
+1197 }
+1198 }
+1199 
+1200 public static void main(String[] args) {
+1201 SortedChain<Integer> sortedChain = new SortedChain<>(10);
+1202 sortedChain.insert(5);
+1203 sortedChain.insert(2);
+1204 sortedChain.insert(7);
+1205 sortedChain.insert(1);
+1206 sortedChain.insert(9);
+1207 sortedChain.insert(10);
+1208 sortedChain.insert(4);
+1209 sortedChain.insert(46);
+1210 sortedChain.insert(3);
+1211 sortedChain.insert(48);
+1212 
+1213 System.out.println("Hash Table after inserting elements:");
+1214 sortedChain.display();
+1215 
+1216 System.out.println("Search 7: " + sortedChain.search(7));
+1217 System.out.println("Search 3: " + sortedChain.search(3));
+1218 
+1219 System.out.println("Delete 2: " + sortedChain.delete(2));
+1220 System.out.println("Delete 4: " + sortedChain.delete(4));
+1221 
+1222 System.out.println("Hash Table after deleting elements:");
+1223 sortedChain.display();
+1224 }
+1225 }
+1226 ----------------------------------------------------------------------------------
+1227 10 write a java program to demonstrate the seperate chaining
+1228 
+1229 package com.college.cvr;
+1230 import java.util.*;
+1231 public class SeparateChaining<K, V> {
+1232 private LinkedList<KeyValue<K, V>>[] hashTable;
+1233 private int tableSize;
+1234 private int currentSize;
+1235 
+1236 public SeparateChaining(int size) {
+1237 tableSize = size;
+1238 currentSize = 0;
+1239 hashTable = new LinkedList[tableSize];
+1240 for (int i = 0; i < tableSize; i++) {
+1241 hashTable[i] = new LinkedList<>();
+1242 }
+1243 }
+1244 
+1245 public void put(K key, V value) {
+1246 int index = hash(key);
+1247 LinkedList<KeyValue<K, V>> chain = hashTable[index];
+1248 for (KeyValue<K, V> item : chain) {
+1249 if (item.getKey().equals(key)) {
+1250 item.setValue(value);
+1251 return;
+1252 }
+1253 }
+1254 chain.add(new KeyValue<>(key, value));
+1255 currentSize++;
+1256 }
+1257 
+1258 public boolean remove(K key) {
+1259 int index = hash(key);
+1260 LinkedList<KeyValue<K, V>> chain = hashTable[index];
+1261 for (KeyValue<K, V> item : chain) {
+1262 if (item.getKey().equals(key)) {
+1263 chain.remove(item);
+1264 currentSize--;
+1265 return true;
+1266 }
+1267 }
+1268 return false;
+1269 }
+1270 
+1271 public V get(K key) {
+1272 int index = hash(key);
+1273 LinkedList<KeyValue<K, V>> chain = hashTable[index];
+1274 for (KeyValue<K, V> item : chain) {
+1275 if (item.getKey().equals(key)) {
+1276 return item.getValue();
+1277 }
+1278 }
+1279 return null;
+1280 }
+1281 
+1282 private int hash(K key) {
+1283 return Math.abs(key.hashCode()) % tableSize;
+1284 }
+1285 
+1286 public void display() {
+1287 for (int i = 0; i < tableSize; i++) {
+1288 System.out.print("Index " + i + ": ");
+1289 LinkedList<KeyValue<K, V>> chain = hashTable[i];
+1290 for (KeyValue<K, V> item : chain) {
+1291 System.out.print(item.getKey() + " = " + item.getValue() + " -> null");
+1292 }
+1293 System.out.println();
+1294 //System.out.println("null");
+1295 }
+1296 }
+1297 
+1298 public static void main(String[] args) {
+1299 SeparateChaining<String, Integer> separateChaining = new SeparateChaining<>(10);
+1300 separateChaining.put("A", 25);
+1301 separateChaining.put("B", 30);
+1302 separateChaining.put("C", 35);
+1303 separateChaining.put("D", 40);
+1304 separateChaining.put("E", 45);
+1305 
+1306 System.out.println("Hash Table after inserting elements:");
+1307 separateChaining.display();
+1308 
+1309 System.out.println("Get value for key 'A': " + separateChaining.get("A"));
+1310 System.out.println("Get value for key 'N': " + separateChaining.get("N"));
+1311 
+1312 System.out.println("Delete key 'B': " + separateChaining.remove("B"));
+1313 System.out.println("Delete key 'S': " + separateChaining.remove("S"));
+1314 
+1315 System.out.println("Hash Table after deleting elements:");
+1316 separateChaining.display();
+1317 }
+1318 }
+1319 
+1320 class KeyValue<K, V> {
+1321 private K key;
+1322 private V value;
+1323 
+1324 public KeyValue(K key, V value) {
+1325 this.key = key;
+1326 this.value = value;
+1327 }
+1328 
+1329 public K getKey() {
+1330 return key;
+1331 }
+1332 
+1333 public V getValue() {
+1334 return value;
+1335 }
+1336 
+1337 public void setValue(V value) {
+1338 this.value = value;
+1339 }
+1340 }
+1341 ----------------------------------------------------------------------------------------
+1342 11 write a java program to demostrate the Linear probing
+1343 
+1344 package com.college.cvr;
+1345 public class LinearProbing1<K, V> {
+1346 private KeyValue<K, V>[] hashTable;
+1347 private int tableSize;
+1348 private int currentSize;
+1349 
+1350 public LinearProbing1(int size) {
+1351 tableSize = size;
+1352 currentSize = 0;
+1353 hashTable = new KeyValue[tableSize];
+1354 }
+1355 
+1356 public void insert(K key, V value) {
+1357 if (currentSize == tableSize) {
+1358 System.out.println("Hash Table is full. Unable to insert key: " + key);
+1359 return;
+1360 }
+1361 
+1362 int index = hash(key);
+1363 while (hashTable[index] != null) {
+1364 if (hashTable[index].getKey().equals(key)) {
+1365 // Key already exists, update the value
+1366 hashTable[index].setValue(value);
+1367 return;
+1368 }
+1369 index = (index + 1) % tableSize; // Move to the next slot
+1370 }
+1371 
+1372 // Found an empty slot, insert the key-value pair
+1373 hashTable[index] = new KeyValue<>(key, value);
+1374 currentSize++;
+1375 }
+1376 
+1377 public boolean delete(K key) {
+1378 int index = findIndex(key);
+1379 if (index != -1) {
+1380 hashTable[index] = null; // Mark the slot as deleted
+1381 currentSize--;
+1382 return true;
+1383 }
+1384 return false;
+1385 }
+1386 
+1387 public V get(K key) {
+1388 int index = findIndex(key);
+1389 if (index != -1) {
+1390 return hashTable[index].getValue();
+1391 }
+1392 return null;
+1393 }
+1394 
+1395 private int findIndex(K key) {
+1396 int index = hash(key);
+1397 int startIndex = index;
+1398 while (hashTable[index] != null) {
+1399 if (hashTable[index].getKey().equals(key)) {
+1400 return index; // Key found
+1401 }
+1402 index = (index + 1) % tableSize; // Move to the next slot
+1403 if (index == startIndex) {
+1404 break; // Reached back to the starting slot, key not found
+1405 }
+1406 }
+1407 return -1; // Key not found
+1408 }
+1409 
+1410 private int hash(K key) {
+1411 return Math.abs(key.hashCode()) % tableSize;
+1412 }
+1413 
+1414 public void display() {
+1415 for (int i = 0; i < tableSize; i++) {
+1416 if (hashTable[i] != null) {
+1417 System.out.println("Index " + i + ": " + hashTable[i].getKey() + " = " +
+hashTable[i].getValue());
+1418 } else {
+1419 System.out.println("Index " + i + ":");
+1420 }
+1421 }
+1422 }
+1423 
+1424 public static void main(String[] args) {
+1425 LinearProbing1<String, Integer> lp = new LinearProbing1<>(10);
+1426 lp.insert("Anil", 25);
+1427 lp.insert("Bhanu", 30);
+1428 lp.insert("Bhargav", 40);
+1429 lp.insert("Chakri", 35);
+1430 lp.insert("Charan", 45);
+1431 
+1432 System.out.println("Hash Table after inserting elements:");
+1433 lp.display();
+1434 
+1435 System.out.println("Get value for key 'Bhanu': " + lp.get("Bhanu"));
+1436 
+1437 
+1438 
+1439 System.out.println("Delete key 'Charan': " + lp.delete("Charan"));
+1440 
+1441 System.out.println("Hash Table after deleting elements:");
+1442 lp.display();
+1443 }
+1444 }
+1445 
+1446 class KeyValue<K, V> {
+1447 private K key;
+1448 private V value;
+1449 
+1450 public KeyValue(K key, V value) {
+1451 this.key = key;
+1452 this.value = value;
+1453 }
+1454 
+1455 public K getKey() {
+1456 return key;
+1457 }
+1458 
+1459 public V getValue() {
+1460 return value;
+1461 }
+1462 
+1463 public void setValue(V value) {
+1464 this.value = value;
+1465 }
+1466 }
+1467 ----------------------------------------------------------------------------------
+1468 12.//Implement BST using collection API ,use recursive functions to implement the 
+traversals
+1469 
+1470 package com.college.cvr;
+1471 public class BinarySearchTree<T extends Comparable<T>> {
+1472 private Node root;
+1473 
+1474 private class Node {
+1475 private T data;
+1476 private Node left;
+1477 private Node right;
+1478 
+1479 public Node(T data) {
+1480 this.data = data;
+1481 this.left = null;
+1482 this.right = null;
+1483 }
+1484 }
+1485 public void insert(T data) {
+1486 root = insertRecursive(root, data);
+1487 }
+1488 private Node insertRecursive(Node root, T data) {
+1489 if (root == null) {
+1490 return new Node(data);
+1491 }
+1492 if (data.compareTo(root.data) < 0) {
+1493 root.left = insertRecursive(root.left, data);
+1494 } else if (data.compareTo(root.data) > 0) {
+1495 root.right = insertRecursive(root.right, data);
+1496 }
+1497 return root;
+1498 }
+1499 public void delete(T data) {
+1500 root = deleteRecursive(root, data);
+1501 }
+1502 private Node deleteRecursive(Node root, T data) {
+1503 if (root == null) {
+1504 return null;
+1505 }
+1506 if (data.compareTo(root.data) < 0) {
+1507 root.left = deleteRecursive(root.left, data);
+1508 } else if (data.compareTo(root.data) > 0) {
+1509 root.right = deleteRecursive(root.right, data);
+1510 } else {
+1511 if (root.left == null) {
+1512 return root.right;
+1513 } else if (root.right == null) {
+1514 return root.left;
+1515 }
+1516 root.data = findMin(root.right);
+1517 root.right = deleteRecursive(root.right, root.data);
+1518 }
+1519 return root;
+1520 }
+1521 public T findMin() {
+1522 if (root == null) {
+1523 return null;
+1524 }
+1525 return findMin(root);
+1526 }
+1527 private T findMin(Node root) {
+1528 while (root.left != null) {
+1529 root = root.left;
+1530 }
+1531 return root.data;
+1532 }
+1533 public boolean search(T data) {
+1534 return searchRecursive(root, data);
+1535 }
+1536 private boolean searchRecursive(Node root, T data) {
+1537 if (root == null) {
+1538 return false;
+1539 }
+1540 if (data.compareTo(root.data) == 0) {
+1541 return true;
+1542 }
+1543 if (data.compareTo(root.data) < 0) {
+1544 return searchRecursive(root.left, data);
+1545 } else {
+1546 return searchRecursive(root.right, data);
+1547 }
+1548 }
+1549 public void displayInOrder() {
+1550 displayInOrder(root);
+1551 }
+1552 
+1553 private void displayInOrder(Node root) {
+1554 if (root != null) {
+1555 displayInOrder(root.left);
+1556 System.out.print(root.data + " ");
+1557 displayInOrder(root.right);
+1558 }
+1559 }
+1560 public void displayPreOrder() {
+1561 displayPreOrder(root);
+1562 }
+1563 
+1564 private void displayPreOrder(Node root) {
+1565 if (root != null) {
+1566 System.out.print(root.data + " ");
+1567 displayPreOrder(root.left);
+1568 displayPreOrder(root.right);
+1569 }
+1570 }
+1571 public void displayPostOrder() {
+1572 displayPostOrder(root);
+1573 }
+1574 
+1575 private void displayPostOrder(Node root) {
+1576 if (root != null) {
+1577 displayPostOrder(root.left);
+1578 displayPostOrder(root.right);
+1579 System.out.print(root.data + " ");
+1580 }
+1581 }
+1582 public static void main(String[] args) {
+1583 BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+1584 bst.insert(50);
+1585 bst.insert(30);
+1586 bst.insert(70);
+1587 bst.insert(20);
+1588 bst.insert(40);
+1589 bst.insert(60);
+1590 bst.insert(80);
+1591 System.out.println("In-order Traversal:");
+1592 bst.displayInOrder();
+1593 System.out.println("\nPre-order Traversal:");
+1594 bst.displayPreOrder();
+1595 System.out.println("\nPost-order Traversal:");
+1596 bst.displayPostOrder();
+1597 System.out.println("\nMinimum value in the tree: " + bst.findMin());
+1598 int searchKey = 40;
+1599 System.out.println("Search for " + searchKey + ": " + bst.search(searchKey));
+1600 System.out.println("Deleting 30.");
+1601 bst.delete(30);
+1602 System.out.println("In-order Traversal after deletion:");
+1603 bst.displayInOrder();
+1604 }
+1605 }
+1606 /*output In-order Traversal:
+1607 20 30 40 50 60 70 80 
+1608 Pre-order Traversal:
+1609 50 30 20 40 70 60 80 
+1610 Post-order Traversal:
+1611 20 40 30 60 80 70 50 
+1612 Minimum value in the tree: 20
+1613 Search for 40: true
+1614 Deleting 30.
+1615 In-order Traversal after deletion:
+1616 20 40 50 60 70 80 */
+1617 ------------------------------
+1618 13.Implement AVL Tree using collection API
+1619 public class AVLNode<T> {
+1620 private T data;
+1621 private int height;
+1622 private AVLNode<T> left;
+1623 private AVLNode<T> right;
+1624 
+1625 AVLNode(T data) {
+1626 this.data = data;
+1627 this.height = 1;
+1628 }
+1629 
+1630 public T getData() {
+1631 return data;
+1632 }
+1633 
+1634 public void setData(T data) {
+1635 this.data = data;
+1636 }
+1637 
+1638 public int getHeight() {
+1639 return height;
+1640 }
+1641 
+1642 public void setHeight(int height) {
+1643 this.height = height;
+1644 }
+1645 
+1646 public AVLNode<T> getLeft() {
+1647 return left;
+1648 }
+1649 
+1650 public void setLeft(AVLNode<T> left) {
+1651 this.left = left;
+1652 }
+1653 
+1654 public AVLNode<T> getRight() {
+1655 return right;
+1656 }
+1657 
+1658 public void setRight(AVLNode<T> right) {
+1659 this.right = right;
+1660 }
+1661 }
+1662 
+1663 class AVLTree<T extends Comparable<T>> {
+1664 private AVLNode<T> root;
+1665 
+1666 private int height(AVLNode<T> node) {
+1667 if (node == null)
+1668 return 0;
+1669 return node.getHeight();
+1670 }
+1671 
+1672 private int balanceFactor(AVLNode<T> node) {
+1673 if (node == null)
+1674 return 0;
+1675 return height(node.getLeft()) - height(node.getRight());
+1676 }
+1677 
+1678 private AVLNode<T> rotateLeft(AVLNode<T> node) {
+1679 AVLNode<T> newRoot = node.getRight();
+1680 AVLNode<T> temp = newRoot.getLeft();
+1681 
+1682 newRoot.setLeft(node);
+1683 node.setRight(temp);
+1684 
+1685 node.setHeight(Math.max(height(node.getLeft()), height(node.getRight())) + 1);
+1686 newRoot.setHeight(Math.max(height(newRoot.getLeft()), height(newRoot.getRight()))
++ 1);
+1687 
+1688 return newRoot;
+1689 }
+1690 
+1691 private AVLNode<T> rotateRight(AVLNode<T> node) {
+1692 AVLNode<T> newRoot = node.getLeft();
+1693 AVLNode<T> temp = newRoot.getRight();
+1694 
+1695 newRoot.setRight(node);
+1696 node.setLeft(temp);
+1697 
+1698 node.setHeight(Math.max(height(node.getLeft()), height(node.getRight())) + 1);
+1699 newRoot.setHeight(Math.max(height(newRoot.getLeft()), height(newRoot.getRight()))
++ 1);
+1700 
+1701 return newRoot;
+1702 }
+1703 
+1704 public void insert(T data) {
+1705 root = insertRecursive(root, data);
+1706 }
+1707 
+1708 private AVLNode<T> insertRecursive(AVLNode<T> node, T data) {
+1709 if (node == null)
+1710 return new AVLNode<>(data);
+1711 
+1712 if (data.compareTo(node.getData()) < 0)
+1713 node.setLeft(insertRecursive(node.getLeft(), data));
+1714 else if (data.compareTo(node.getData()) > 0)
+1715 node.setRight(insertRecursive(node.getRight(), data));
+1716 else // Data already exists
+1717 return node;
+1718 
+1719 node.setHeight(Math.max(height(node.getLeft()), height(node.getRight())) + 1);
+1720 
+1721 int balanceFactor = balanceFactor(node);
+1722 
+1723 if (balanceFactor > 1 && data.compareTo(node.getLeft().getData()) < 0)
+1724 return rotateRight(node);
+1725 
+1726 if (balanceFactor < -1 && data.compareTo(node.getRight().getData()) > 0)
+1727 return rotateLeft(node);
+1728 
+1729 if (balanceFactor > 1 && data.compareTo(node.getLeft().getData()) > 0) {
+1730 node.setLeft(rotateLeft(node.getLeft()));
+1731 return rotateRight(node);
+1732 }
+1733 
+1734 if (balanceFactor < -1 && data.compareTo(node.getRight().getData()) < 0) {
+1735 node.setRight(rotateRight(node.getRight()));
+1736 return rotateLeft(node);
+1737 }
+1738 
+1739 return node;
+1740 }
+1741 
+1742 public void delete(T data) {
+1743 root = deleteRecursive(root, data);
+1744 }
+1745 
+1746 private AVLNode<T> deleteRecursive(AVLNode<T> node, T data) {
+1747 
+1748 if (node == null) {
+1749 return null;
+1750 }
+1751 
+1752 if (data.compareTo(node.getData()) < 0) {
+1753 node.setLeft(deleteRecursive(node.getLeft(), data));
+1754 } else if (data.compareTo(node.getData()) > 0) {
+1755 node.setRight(deleteRecursive(node.getRight(), data));
+1756 }
+1757 else {
+1758 // Case 1: Deleting a node with no children or one child
+1759 if (node.getLeft() == null) {
+1760 return node.getRight();
+1761 } else if (node.getRight() == null) {
+1762 return node.getLeft();
+1763 }
+1764 
+1765 // Case 2: Deleting a node with two children
+1766 AVLNode<T> successor = findSuccessor(node.getRight());
+1767 node.setData(successor.getData());
+1768 node.setRight(deleteRecursive(node.getRight(), successor.getData()));
+1769 }
+1770 
+1771 
+1772 
+1773 node.setHeight(Math.max(height(node.getLeft()), height(node.getRight())) + 1);
+1774 
+1775 int balanceFactor = balanceFactor(node);
+1776 
+1777 if (balanceFactor > 1 && balanceFactor(node.getLeft()) >= 0)
+1778 return rotateRight(node);
+1779 
+1780 if (balanceFactor < -1 && balanceFactor(node.getRight()) <= 0)
+1781 return rotateLeft(node);
+1782 
+1783 if (balanceFactor > 1 && balanceFactor(node.getLeft()) < 0) {
+1784 node.setLeft(rotateLeft(node.getLeft()));
+1785 return rotateRight(node);
+1786 }
+1787 
+1788 if(balanceFactor < -1 && balanceFactor(node.getRight()) > 0) {
+1789 node.setRight(rotateRight(node.getRight()));
+1790 return rotateLeft(node);
+1791 }
+1792 return node;
+1793 }
+1794 
+1795 private AVLNode<T> findSuccessor(AVLNode<T> node) {
+1796 if (node.getLeft() == null) {
+1797 return node;
+1798 }
+1799 
+1800 return findSuccessor(node.getLeft());
+1801 }
+1802 public void inorderTraversal() {
+1803 inorderTraversalRecursive(root);
+1804 }
+1805 
+1806 private void inorderTraversalRecursive(AVLNode<T> node) {
+1807 if (node != null){
+1808 inorderTraversalRecursive(node.getLeft());
+1809 System.out.print(node.getData() + " ");
+1810 inorderTraversalRecursive(node.getRight());
+1811 }
+1812 }
+1813 
+1814 public static void main(String[] args) {
+1815 AVLTree<Integer> avlTree = new AVLTree<>();
+1816 
+1817 avlTree.insert(10);
+1818 avlTree.insert(20);
+1819 avlTree.insert(30);
+1820 avlTree.insert(40);
+1821 avlTree.insert(50);
+1822 avlTree.insert(25);
+1823 
+1824 System.out.println("Inorder Traversal:");
+1825 avlTree.inorderTraversal();
+1826 
+1827 avlTree.delete(30);
+1828 
+1829 System.out.println("\nInorder Traversal after deleting 30:");
+1830 avlTree.inorderTraversal();
+1831 }
+1832 }
+1833 
+1834 ---------------------------------------
